@@ -8,6 +8,7 @@ namespace AutoCopy
 {
     public partial class Form1 : Form
     {
+        private Timer timer1, timer2;
         private int _checkInterval = 0;
         DateTime _time;
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -42,6 +43,8 @@ namespace AutoCopy
 
         protected void OnStart(object sender, EventArgs e)
         {
+            timer1 = new Timer();
+            timer2 = new Timer();
             flag = true;
             backup(sender, e);
             timer1.Tick += backup;
@@ -54,7 +57,11 @@ namespace AutoCopy
             timer1.Start();
             timer2.Enabled = true;
             timer2.Start();
+            btn_source.Enabled = false;
+            btn_target.Enabled = false;
+            btn_save.Enabled = false;
             btn_backup.Enabled = false;
+            btn_stop.Enabled = true;
         }
 
         private void Timer2_Tick(object sender, EventArgs e)
@@ -71,8 +78,12 @@ namespace AutoCopy
             timer2.Stop();
             timer2.Dispose();
             toolStripStatusLabel2.Text = "停止備份";
+            btn_source.Enabled = true;
+            btn_target.Enabled = true;
+            btn_save.Enabled = true;
             btn_backup.Enabled = true;
             btn_stop.Enabled = false;
+            _time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
         }
 
         //新建FileOprater物件
@@ -106,8 +117,6 @@ namespace AutoCopy
                     DateTime edate = DateTime.Now;
                     toolStripStatusLabel2.Text = string.Format("備份完成！花費時間：{0}", DateDiff(sdate, edate));
                     //MessageBox.Show("備份完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Convert.ToInt16(cb_hour.Text), Convert.ToInt16(cb_minute.Text), 0);
-                    toolStripStatusLabel1.Text = _time.ToString("HH:mm:ss");
                 }
             }
             catch (Exception ex)

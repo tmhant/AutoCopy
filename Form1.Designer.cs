@@ -29,7 +29,6 @@ namespace AutoCopy
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_source = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -47,9 +46,7 @@ namespace AutoCopy
             this.label4 = new System.Windows.Forms.Label();
             this.cb_minute = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_exit = new System.Windows.Forms.Button();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.btn_stop = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -311,10 +308,8 @@ namespace AutoCopy
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cb_minute;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button btn_stop;
     }
 }
